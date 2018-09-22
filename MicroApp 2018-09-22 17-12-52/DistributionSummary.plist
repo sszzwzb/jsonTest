@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>MicroApp.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>armv7</string>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>39444C6569256F9C968D193F3216E14C11104DBF</string>
+				<key>dateExpires</key>
+				<string>2020/6/29</string>
+				<key>type</key>
+				<string>iOS Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>6WC9G77P2A.com.etaishuo.weixiao19443</string>
+				<key>aps-environment</key>
+				<string>production</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>6WC9G77P2A</string>
+				<key>get-task-allow</key>
+				<false/>
+			</dict>
+			<key>name</key>
+			<string>MicroApp.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>27b569c1-28ab-40e5-a02c-fc47b366d3a9</string>
+				<key>name</key>
+				<string>19443</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>6WC9G77P2A</string>
+				<key>name</key>
+				<string>Dalian Taishuo Technology Co. Ltd.</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
