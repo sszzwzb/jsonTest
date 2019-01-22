@@ -17,6 +17,21 @@
 
 		git 提交测试
 
+
+		<a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.hymba.shaoshang" id="openApp">打开app</a>
+//a链接是APP下载的链接
+<script type="text/javascript">
+ document.getElementById('openApp').onclick = function(e){
+  var ifr = document.createElement('iframe');
+  ifr.src = 'ZWXJZB://';// app协议的地址
+  ifr.style.display = 'none';
+  document.body.appendChild(ifr);
+  window.setTimeOut(function(){
+    document.body.removeChild(ifr);
+  },3000);
+
+ }
+
 	</table>
 
 </body>
