@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1 user-scalable=0"> 
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta http-equiv="Content-Security-Policy" content="default-src * gap://ready file:; style-src 'self' 'unsafe-inline'; img-src 'self' data:; script-src * 'unsafe-inline' 'unsafe-eval'">
+	<title>考勤app下载</title>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html{
+            font-size : 16px;
+        }
+        @media only screen and (min-width:320px ){
+            html{font-size: 12px !important;}   
+        }
+        @media only screen and (min-width:375px ){
+            html{font-size: 14px !important;}   
+        }
+        @media only screen and (min-width:414px){
+            html{font-size: 16px !important;}   
+        }
+        @media only screen and (min-width:484px){
+            html{font-size: 18px !important;}   
+        }
+
+        body{
+        	display: block;
+        	color:#fff;
+        	background-image:url(./Default-736h2.gif); /*背景图片路径*/
+            background-position:center;
+            /*background-attachment: fixed;*/
+            background-size: cover;
+            overflow: hidden; 
+            width:100vw;
+            height:100vh;
+        }
+
+        .title-word{
+            position: fixed;
+            font-size: 1rem;
+            width: 60%;
+            left:20%;
+            top:45vh;
+            text-align: center;
+        }
+
+        #dowload{
+        	width:100%;
+        	height: 3rem;
+        	position: fixed;
+        	bottom: 15vh;
+        }
+
+        .wap-btn {
+        	width: 35%;
+        	height: 3rem;
+        	line-height: 3rem;
+        	border: 1px solid #fff;
+        	-webkit-border-radius: 25px;
+        	-moz-border-radius: 25px;
+        	border-radius: 25px;
+        	margin-left: 10%;
+        	float: left;
+            position: relative;
+        }
+
+        .wap-btn img {
+        	width: 1.5rem;
+        	height: 1.5rem;
+            position: absolute;
+            top:calc(50% - 0.75rem);
+            left:1.5rem;
+        }
+
+        .wap-btn span {
+        	display: inline-block;
+        	height: 3rem;
+            width:100%;
+            text-align: center;
+            padding-left:1.2rem;
+        }
+
+        .mask{
+            height:100vh;
+            width:100vw;
+            position:fixed;
+            top:0;
+            z-index:99999;
+            background-color:rgba(0,0,0,0.8);
+            display:none;
+        }
+
+        .maskImg-center{
+            position: absolute;
+            width:80%;
+            text-align: center;
+            top: 30vh;
+            left:10vw;
+        }
+
+        .maskImg-center img {
+            width: 100%;
+            height:100%;
+        }
+    </style>
+</head>
+<body>
+	<div class="title-word">
+		大连中盈控股集团有限公司成立于13年01月09日。经营范围包括项目投资；船舶、船舶设备、模具及配件的设计。
+	</div>
+	<div id="dowload">
+		<a id="android"> 
+			<div class="wap-btn">
+				<div class="center-block">
+					<img src="wap_android2.png">   <!-- //安卓路径 -->
+					<span>安卓版</span>
+				</div>
+			</div>
+		</a>
+		<a id="ios">
+			<div class="wap-btn">
+				<div class="center-block">
+					<img src="wap_ios2.png">  <!-- ios路径 -->
+					<span>苹果版</span>
+				</div>
+			</div>
+		</a>
+        <div style="clear:both;"></div>
+	</div>
+
+	<div class="mask">
+        <div class="maskImg-center">
+            <img src="WechatMsg.png">
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript">
+
+//     wx.invoke('launch3rdApp', {
+//         'appName': '腾讯视频', //应用显示的名称
+//         'appID': '4r4rwer32r23r2', // iOS使用，要启动应用的scheme(ios开发人员提供，非企业微信corpid)
+//         'messageExt': 'execute=login&username=admin', // iOS使用，获取方法参考微信iOS SDK中的LaunchFromWXReq,启动App时附加的额外信息
+//         'packageName': 'zj.zgcx', // Android使用，要启动应用的包名称
+//         'param': 'execute=login&username=admin' // Android使用，传递给第三方的参数，第三方通过intent.getStringExtra("launchParam")得到传过去的参数值（例如本例getStringExtra得到的结果是webview）
+//     }, 
+//     function(res) {
+//         //alert(JSON.stringify(res));//返回结果
+//     }
+	
+
+	$('#android').click(function(){
+		// location.href = "zy://zyoa:8888/signinindex?type=0";
+		// alert(11111111111111);
+		// upApp()
+        upAppAndroid()
+	})
+	$('#ios').click(function(){
+		// location.href = "ZYOA://type=0";
+		// alert("ZYOA://type=0 测试");
+		// upApp()
+        upAppiOS()
+	})
+
+
+//  打开执行  微信的话，打开弹窗
+//实际上就是新建一个iframe的生成器
+        var  createIframe=(function(){
+            var iframe;
+            return function(){
+                if(iframe){
+                    return iframe;
+                }else{
+                    iframe = document.createElement('iframe');
+                    iframe.style.display = 'none';
+                    document.body.appendChild(iframe);
+                    return iframe;
+                }
+            }
+        })()
+
+
+var openApp=function(){
+            // var valuee=<php>echo json_encode($value)</php>;
+            // var localUrl="hxqdoctor://"+encodeURI(JSON.stringify(valuee));
+
+			// alert("开机执行");
+
+            var localUrliOS="ZYOA://type=0";
+            var localUrlAndroid="zy://zyoa:8888/signinindex?type=0";
+            var openIframe=createIframe();
+            var u = navigator.userAgent;
+            var isIos = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            var isAndroid= u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+            var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+
+     //        alert("微信自己的跳转，微信弃用了");
+     //        wx.invoke('launch3rdApp', {
+     //    			'appName': '中盈控股', //应用显示的名称
+     //    			'appID': 'ZYOA://', // iOS使用，要启动应用的scheme(ios开发人员提供，非企业微信corpid)
+     //    			'messageExt': 'type=0', // iOS使用，获取方法参考微信iOS SDK中的LaunchFromWXReq,启动App时附加的额外信息
+     //    			'packageName': 'com.zhongying.zhongyingoa', // Android使用，要启动应用的包名称
+     //    			'param': 'signinindex?type=0' // Android使用，传递给第三方的参数，第三方通过intent.getStringExtra("launchParam")得到传过去的参数值（例如本例getStringExtra得到的结果是webview）
+    	// 		}, 
+    	// 		function(res) {
+     //    			//alert(JSON.stringify(res));//返回结果
+					// alert("微信自己的跳转成功");
+    	// 	});
+
+            // alert(u);
+
+			// 网页默认直接跳转
+            if(isIos){
+            	// alert("iOS");
+                if(isIOS9()){
+                    //判断是否为ios9以上的版本,跟其他判断一样navigator.userAgent判断,ios会有带版本号
+                   /* localUrl=createScheme({type:1,id:"sdsdewe2122"},true);//代码还可以优化一下*/
+                    window.location.href = localUrliOS;//实际上不少产品会选择一开始将链接写入到用户需要点击的a标签里
+                    return;
+                }
+                //判断是否是ios,具体的判断函数自行百度
+                window.location.href = localUrliOS;
+                
+            }else if(isAndroid){
+            	// alert("Android");
+                //判断是否是android，具体的判断函数自行百度
+                if (isChrome) {
+                    //chrome浏览器用iframe打不开得直接去打开，算一个坑
+                    window.location.href = localUrlAndroid;
+                } else {
+                    //抛出你的scheme
+                    openIframe.src = localUrlAndroid;
+                }
+
+                window.location.href = localUrlAndroid;
+                
+            }else{
+            	// alert("其他手机");
+                //主要是给winphone的用户准备的,实际都没测过，现在winphone不好找啊
+                openIframe.src = localUrl;
+                setTimeout(function () {
+                    window.location.href = "你的下载地址";
+                }, 5000);
+            }
+
+        }
+
+var upAppiOS=function(){
+
+    window.location.href = "https://itunes.apple.com/us/app/%e4%b8%ad%e7%9b%88%e6%8e%a7%e8%82%a1/id1446516902?l=zh&ls=1&mt=8";
+}
+
+var upAppAndroid=function(){
+
+    window.location.href = "http://www.zhongyingjituan.com/android/ZHongYingOA.apk";//"你的安卓下载地址";          /* http://t.cn/
+}
+
+var upApp=function(){
+            // var valuee=<php>echo json_encode($value)</php>;
+            // var localUrl="hxqdoctor://"+encodeURI(JSON.stringify(valuee));
+            // var localUrliOS="ZYOA://type=0";
+            // var localUrlAndroid="zy://zyoa:8888/signinindex?type=0";
+            var openIframe=createIframe();
+            var u = navigator.userAgent;
+            var isIos = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            var isAndroid= u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+            var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            if(isIos){
+            	// alert("iOS");
+                
+                window.location.href = "https://itunes.apple.com/us/app/%e4%b8%ad%e7%9b%88%e6%8e%a7%e8%82%a1/id1446516902?l=zh&ls=1&mt=8";
+                
+            }else if(isAndroid){
+            	// alert("Android");
+                
+				window.location.href = "http://www.zhongyingjituan.com/android/ZHongYingOA.apk";//"你的安卓下载地址";          /* http://t.cn/
+
+            }else{
+            	// alert("其他手机");
+                //主要是给winphone的用户准备的,实际都没测过，现在winphone不好找啊
+                openIframe.src = localUrl;
+                setTimeout(function () {
+                    window.location.href = "你的下载地址";
+                }, 5000);
+            }
+        }
+
+/*判断是否是ios9以上*/
+        function isIOS9() {
+            //获取固件版本
+            var getOsv = function () {
+                var reg = /OS ((\d+_?){2,3})\s/;
+                if (navigator.userAgent.match(/iPad/i) || navigator.platform.match(/iPad/i) || navigator.userAgent.match(/iP(hone|od)/i) || navigator.platform.match(/iP(hone|od)/i)) {
+                    var osv = reg.exec(navigator.userAgent);
+                    if (osv.length > 0) {
+                        return osv[0].replace('OS', '').replace('os', '').replace(/\s+/g, '').replace(/_/g, '.');
+                    }
+                }
+                return '';
+            };
+            var osv = getOsv();
+            var osvArr = osv.split('.');
+            //初始化显示ios9引导
+            if (osvArr && osvArr.length > 0) {
+                if (parseInt(osvArr[0]) >= 9) {
+                    return true
+                }
+            }
+            return false
+        }
+
+
+
+        function isWeiXin(){
+            var ua = window.navigator.userAgent.toLowerCase();
+            if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+
+//  打开执行  微信的话，打开弹窗
+        $(function () {
+           if(isWeiXin()){
+           		// alert("微信");
+               $('.mask').show();
+               // $('html,body').css("overflow","hidden");
+
+               // openApp()
+
+           }else{
+           		// alert("不是微信内部打卡方式");
+               $('.mask').hide();
+
+               openApp()
+
+           }
+       })
+
+
+
+</script>
+</html>
+
+
+
+
+
+
+
